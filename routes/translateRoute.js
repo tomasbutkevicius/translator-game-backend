@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const request = require('request');
-var zlib = require('zlib');
+var he = require('he');
 
 const options = {
   method: 'POST',
   url: 'https://google-translate1.p.rapidapi.com/language/translate/v2',
   headers: {
-    'content-type': 'application/x-www-form-urlencoded',
+    'content-type': 'application/json; charset=utf-8',
     'accept-encoding': 'application/gzip',
     'x-rapidapi-key': process.env.KEY,
     'x-rapidapi-host': 'google-translate1.p.rapidapi.com',
@@ -27,7 +27,8 @@ router.post("/", async (req, res) => {
       res.status(jsonResponse.error.code).send(jsonResponse);
       return;
     }
-    
+    decodedTransaltion = he.decode(jsonResponse["data"]["translations"][0]["translatedText"]);
+    jsonResponse["data"]["translations"][0]["translatedText"] = decodedTransaltion;
     res.send(jsonResponse);
   });
 });
