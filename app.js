@@ -4,7 +4,7 @@ require('dotenv/config');
 
 const translateRoute = require('./routes/translateRoute');
 const languagesRoute = require('./routes/languagesRoute');
-
+const quotesRoute = require('./routes/quotesRoute');
 
 app.use(express.json());
 app.use(function (req, res, next) {
@@ -16,5 +16,6 @@ app.use(function (req, res, next) {
 
 app.use("/translate", translateRoute);
 app.use("/languages", languagesRoute);
+app.use("/quote",     quotesRoute);
 
 module.exports = app;
