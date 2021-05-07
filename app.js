@@ -2,9 +2,9 @@ const express = require("express");
 const app = express();
 require('dotenv/config');
 
-const translateRoute = require('./routes/translateRoute');
-const languagesRoute = require('./routes/languagesRoute');
-const quotesRoute = require('./routes/quotesRoute');
+const translateRoute = require('./routes/TranslateRoute');
+const languagesRoute = require('./routes/LanguagesRoute');
+const quotesRoute = require('./routes/QuotesRoute');
 
 app.use(express.json());
 app.use(function (req, res, next) {
